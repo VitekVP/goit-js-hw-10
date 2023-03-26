@@ -5,6 +5,9 @@ import { fetchCountries } from './js/fetchCountries';
 import { getListCountries, getCardCountries } from './js/markupCountries';
 
 const DEBOUNCE_DELAY = 300;
+let markup = '';
+let country = '';
+let quantityCountry = null;
 
 const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
@@ -16,7 +19,7 @@ inputEl.addEventListener(
 );
 
 function handleInputCountries(event) {
-  let country = event.target.value.trim();
+  country = event.target.value.trim();
 
   if (!country) {
     getCleanFields();
@@ -27,7 +30,7 @@ function handleInputCountries(event) {
     .then(data => {
       getCleanFields();
 
-      let quantityCountry = data.length;
+      quantityCountry = data.length;
 
       if (quantityCountry > 10) {
         Notiflix.Notify.info(
@@ -35,7 +38,7 @@ function handleInputCountries(event) {
         );
         return;
       }
-      let markup;
+
       if (quantityCountry === 1) {
         markup = data.map(el => getCardCountries(el));
         cardEl.innerHTML = markup;
