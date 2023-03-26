@@ -35,9 +35,9 @@ function handleInputCountries(event) {
         );
         return;
       }
-
+      let markup;
       if (quantityCountry === 1) {
-        let markup = data.map(el => getCardCountries(el));
+        markup = data.map(el => getCardCountries(el));
         cardEl.innerHTML = markup;
         return;
       }
