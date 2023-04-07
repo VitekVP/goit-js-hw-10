@@ -40,13 +40,11 @@ function handleInputCountries(event) {
       }
 
       if (quantityCountry === 1) {
-        markup = data.map(el => getCardCountries(el));
-        cardEl.innerHTML = markup;
+        addMarkupCard(data);
         return;
       }
 
-      markup = data.map(el => getListCountries(el)).join('');
-      listEl.innerHTML = markup;
+      addMarkupList(data);
     })
     .catch(() => {
       getCleanFields();
@@ -57,4 +55,14 @@ function handleInputCountries(event) {
 function getCleanFields() {
   listEl.innerHTML = '';
   cardEl.innerHTML = '';
+}
+
+function addMarkupList(data) {
+  markup = data.map(el => getListCountries(el)).join('');
+  listEl.innerHTML = markup;
+}
+
+function addMarkupCard(data) {
+  markup = data.map(el => getCardCountries(el));
+  cardEl.innerHTML = markup;
 }
